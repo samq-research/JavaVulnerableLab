@@ -1,15 +1,13 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
 
 trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'maven:3.6.3'
 
 steps:
-- task: WhiteSource@20
+- task: CmdLine@2
   inputs:
-    projectName: 'JVL-Azure'
+    script: |
+      wget https://unified-agent.s3.amazonaws.com/wss-unified-agent.jar
+      java -jar wss-unified-agent.jar -c ./EUA-maven.config -appPath ./target/JavaVulnerableLab.war -d ./ -apikey $(API_KEY) -project JVL -product ADO-Pipeline
