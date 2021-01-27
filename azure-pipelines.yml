@@ -24,4 +24,8 @@ steps:
   inputs:
     cwd: '$(System.DefaultWorkingDirectory)'
     projectName: '$(Build.Repository.Name)'
-    configuration: 'docker.scanImages=true'
+    configuration: |
+      checkPolicies=true
+      forceCheckAllDependencies=true
+      forceUpdate=true
+      forceUpdate.failBuildOnPolicyViolation=true'
