@@ -1,31 +1,20 @@
 
 trigger:
-- main
+- master
 
-variables: 
-  API_KEY: $(apikey)
   
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: Maven@3
+- task: Docker@2
   inputs:
-    mavenPomFile: 'pom.xml'
-    goals: 'clean install'
-    publishJUnitResults: false
-    javaHomeOption: 'JDKVersion'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
 
-- task: WhiteSource@20
+- task: CmdLine@2
   inputs:
-    cwd: '$(System.DefaultWorkingDirectory)'
-    projectName: '$(Build.Repository.Name)'
-    configuration: |
-      checkPolicies=true
-      forceCheckAllDependencies=true
-      forceUpdate=true
-      forceUpdate.failBuildOnPolicyViolation=true'
+    script: |
+      wget https://unified-agent.s3.amazonaws.com/wss-unified-agent.jar
+      export WS_DOCKER_SCANIMAGES=true
+      java -jar wss-unified-agent.jar -d ./ -apikey $(APIKEY) -project DockerTest -product DockerTest
