@@ -15,6 +15,9 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
+      docker ps -a
+      docker image ls
+      docker ps
       wget https://unified-agent.s3.amazonaws.com/wss-unified-agent.jar
       export WS_DOCKER_SCANCONTAINERS=TRUE
       export WS_DOCKER_CONTAINERINCLUDES=.*
