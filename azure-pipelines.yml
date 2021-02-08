@@ -16,4 +16,5 @@ steps:
   inputs:
     script: |
       wget https://unified-agent.s3.amazonaws.com/wss-unified-agent.jar
-      java -jar wss-unified-agent.jar -d ./ -apikey $(APIKEY) -project DockerTest -product DockerTest -docker.scanImages true
+      export WS_DOCKER_SCANCONTAINERS=TRUE
+      java -jar wss-unified-agent.jar -d ./ -apikey $(APIKEY) -project DockerTest -product DockerTest
