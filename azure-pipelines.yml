@@ -21,6 +21,5 @@ steps:
       docker image ls
       docker ps
       wget https://unified-agent.s3.amazonaws.com/wss-unified-agent.jar
-      export WS_DOCKER_SCANCONTAINERS=TRUE
-      export WS_DOCKER_CONTAINERINCLUDES=.*JVL-Docker.*
-      java -jar wss-unified-agent.jar -d ./ -apikey $(APIKEY) -project DockerTest -product DockerTest
+      export WS_DOCKER_INCLUDES=.*JVL-Docker.*
+      java -jar wss-unified-agent.jar -d ./ -apikey $(APIKEY) -project DockerTest -product DockerTest -docker.scanImages true
