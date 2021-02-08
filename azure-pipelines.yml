@@ -11,6 +11,8 @@ steps:
   inputs:
     command: 'build'
     Dockerfile: '**/Dockerfile'
+    tags: |
+      JVL-Docker
 
 - task: CmdLine@2
   inputs:
@@ -20,5 +22,5 @@ steps:
       docker ps
       wget https://unified-agent.s3.amazonaws.com/wss-unified-agent.jar
       export WS_DOCKER_SCANCONTAINERS=TRUE
-      export WS_DOCKER_CONTAINERINCLUDES=.*
+      export WS_DOCKER_CONTAINERINCLUDES=.*JVL-Docker.*
       java -jar wss-unified-agent.jar -d ./ -apikey $(APIKEY) -project DockerTest -product DockerTest
