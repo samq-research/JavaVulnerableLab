@@ -10,7 +10,8 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-    docker-compose -v
+      docker-compose -v
+      
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Container Registry'
