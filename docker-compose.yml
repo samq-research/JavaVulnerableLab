@@ -1,12 +1,17 @@
-version: "2.0"
+version: "2.4"
 services:
   javavulnlab:
     build: .
     ports:
       - 8080:8080
-    links: 
-      - mysql
+    networks: 
+      - front-tier
   mysql:
     image: mysql:5.7
     environment:
       - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - front-tier
+  networks:
+    front-tier:
+      driver: bridge
