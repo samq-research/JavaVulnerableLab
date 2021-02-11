@@ -10,10 +10,6 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      sudo rm /usr/local/bin/docker-compose
-      sudo apt remove docker-compose
-      sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-      sudo chmod +x /usr/local/bin/docker-compose
       docker-compose -v
 
 - task: DockerCompose@0
@@ -21,7 +17,7 @@ steps:
     containerregistrytype: 'Container Registry'
     dockerComposeFile: '**/docker-compose.yml'
     action: 'Run a Docker Compose command'
-    dockerComposeCommand: 'build'
+    dockerComposeCommand: 'up'
 
 - task: CmdLine@2
   inputs:
