@@ -12,6 +12,6 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     networks:
       - front-tier
-  networks:
-    front-tier:
-      driver: bridge
+networks:
+  front-tier:
+    driver: bridge
