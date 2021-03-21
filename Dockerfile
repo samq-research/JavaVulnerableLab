@@ -1,4 +1,4 @@
-FROM tomcat:8.5.55-jdk8-openjdk
+FROM tomcat:8.5.60-jdk8-openjdk
 
 COPY . .
 
